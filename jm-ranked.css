@@ -1,0 +1,356 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Arial', sans-serif;
+}
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 100000;
+    top: 0;
+    left: 0;
+    background-color: rgb(160, 241, 255); /* Dark blue for header */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+body {
+    background-color: rgb(255, 214, 230); /* White background */
+    padding-top: 100px;
+}
+.navbar {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Push logo to left and nav links to right */
+}
+.logo a {
+    color: rgb(53, 50, 137); /* Light blue for logo */
+    font-size: 35px;
+    font-weight: 600;
+}
+ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+ul li {
+    margin-right: 25px;
+}
+ul li a {
+    color: rgb(255, 20, 147); /* White for nav links */
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+ul li a:hover {
+    color: rgb(255, 255, 255); /* Pink on hover */
+}
+.login-button {
+    background-color: rgb(255, 255, 255); /* White background */
+    color: rgb(53, 50, 137); /* Dark blue text */
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.login-button:hover {
+    background-color: rgb(255, 20, 147); /* Pink background on hover */
+    color: rgb(255, 255, 255); /* White text on hover */
+}
+button {
+    background-color: rgb(255, 20, 147); /* Pink for buttons */
+    color: rgb(255, 255, 255); /* White text */
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: rgb(53, 50, 137); /* Dark blue on hover */
+}
+.general-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.general-button {
+    text-align: center;
+    color: rgb(255, 255, 255); /* White text */
+    background-color: rgb(53, 50, 137); /* Dark blue for button */
+    height: 150px;
+    width: 500px;
+    font-size: 100px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+.general-button:hover {
+    background-color: rgb(255, 20, 147); /* Pink on hover */
+    cursor: pointer;
+}
+.categories-title {
+    text-align: center;
+    color: rgb(255, 20, 147); /* Pink for title */
+    font-size: 40px;
+    margin: 40px 0;
+    text-decoration: underline;
+}
+.categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 20px 0;
+}
+.category {
+    color: rgb(255, 255, 255); /* White text */
+    background-color: rgb(53, 50, 137); /* Dark blue for category buttons */
+    height: 200px;
+    width: 200px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+.category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1; /* Ensure the image is behind the text */
+}
+.category:hover::before {
+    opacity: 1;
+}
+.category span {
+    position: relative;
+    z-index: 2; /* Ensure the text is above the image */
+    transition: color 0.3s ease; /* Smooth transition for text color */
+}
+.category:hover span {
+    color: rgb(255, 20, 147); /* Change text color to pink on hover */
+}
+/* Specific category hover effects */
+#petiteButton::before {
+    background-image: url(Petite\ Button\ Cover.jpg);
+}
+#OFButton::before {
+    background-image: url(OF\ Button\ Cover.jpg);
+}
+#milfButton::before {
+    background-image: url(Milf\ Button\ Cover.jpg);
+}
+#ebonyButton::before {
+    background-image: url(Ebony\ Button\ Cover.jpg);
+}
+#asianButton::before {
+    background-image: url(Asian\ Button\ Cover.jpg);
+}
+#latinaButton::before {
+    background-image: url(Latina\ Button\ Cover.jpg);
+}
+#blondeButton::before {
+    background-image: url(Blonde\ Button\ Cover.jpg);
+}
+#brunetteButton::before {
+    background-image: url(Brunette\ Button\ Cover.jpg);
+}
+#redheadButton::before {
+    background-image: url(Redhead\ Button\ Cover.jpg);
+}
+
+
+#start{
+    position: absolute; /* Center within #play-screen */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset to truly center */
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    z-index: 20;
+}
+#start:hover{
+    cursor: pointer; background-color: #0056b3;
+}
+#timer{
+    display: flex; justify-content: center; font-size: 3rem; color: whitesmoke; margin-bottom: 20px; 
+    font-weight: bold; background: linear-gradient(135deg, #007bff, #00bfff); /* Gradient background */
+    padding: 20px 40px;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    margin-bottom: 20px;
+    animation: glow 2s infinite alternate; /* Glow effect */
+}
+@keyframes glow{
+    0% {
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.7); /* Soft Glow */
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(0, 123, 255, 1); /* Hard Glow */
+    }
+}
+#timer.fade-red{ 
+    animation: fadeToRed 1s ease-in-out, glow 2s infinite alternate; /* Apply fade red animation */
+}
+@keyframes fadeToRed{
+    0% {
+        color: whitesmoke; /* Default timer color */
+    }
+    50% {
+        color: red; /* Fade to red */
+    }
+    100% {
+        color: whitesmoke; /* Fade back to default */
+    }
+}
+#play-screen{
+    display: flex; flex-direction: column; align-items: center; justify-content: center; width: 300px; height: 300px; padding: 50px; margin: auto;
+    position: relative; /* Ensure child elements can be centered */
+}
+#input{
+    display:flex; justify-content: center; padding: 10px;
+}
+#goMessage {
+    display: none; /* Hidden by default */
+    color: white; 
+    font-weight: bolder; 
+    animation: expandShrink 1s ease-in-out; /* Animation for expanding and shrinking */
+    position: absolute; /* Center within #play-screen */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset to truly center */
+    z-index: 10; /* Ensure it appears above other elements */
+    padding: 10px; /* Add some padding for better visibility */
+    border-radius: 5px; /* Rounded corners */
+}
+@keyframes expandShrink {
+    0% {
+        transform: scale(0); /* Start with no size */
+        opacity: 0; /* Start fully transparent */
+    }
+    50% {
+        transform: scale(20); /* Expand to 20x size */
+        opacity: 1; /* Fully visible */
+    }
+    100% {
+        transform: scale(0); /* Shrink back to no size */
+        opacity: 0; /* Fully transparent */
+    }
+}
+#randomImage{
+    max-width: 100%; max-height: 300px;
+    display: none; /* Hidden by default */
+}
+#guessInput{
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    width: 250px;
+    border: 2px solid #007bff;
+    border-radius: 25px; /* Rounded corners */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for focus effect */
+    display: none; /* Hidden by default */
+    display: none;
+}
+#imageContainer{
+    position: relative; /* Container for image and feedback */
+    margin: auto; margin-top: -25px;
+    width: 100%; height: 100%; /* Ensure the container takes full space */
+}
+#feedback{
+    position: absolute; /* Position feedback atop the image */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset to truly center */
+    color: white; padding: 10px; border-radius: 5px;
+    display: none; /* Hidden by default */
+    z-index: 10; /* Ensure feedback is above the image */
+    animation: expand 0.5s ease-in-out; /* Animation for expanding */
+    font-weight: 900;
+    padding: 10;
+    border-radius: 5px;
+    font-size: 50px;
+    text-shadow: 
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black; /* Add a black outline */
+    white-space: nowrap; overflow: hidden; /* Prevent text from wrapping */
+}
+@keyframes expand {
+    0% {
+        transform: translate(-50%, -50%) scale(0); /* Start with no size */
+        opacity: 0; /* Start fully transparent */
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1); /* Expand to 5x size */
+        opacity: 1; /* Fully visible */
+    }
+}
+.timer-text{
+    color: rgba(251, 124, 169);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+#playAgainContainer{
+    padding-top: 5px;
+    display: flex; width: 100%; justify-content: center;
+}
+#giveUp{
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #dc3545; /* Red color for the Give Up button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px; /* Add some spacing */
+    z-index: 50;
+}
+#giveUp:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+#playAgain {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #28a745; /* Green color for the Play Again button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px; /* Add some spacing */
+    display: none; /* Hidden by default */
+}
+#playAgain:hover {
+    background-color: #218838; /* Darker green on hover */
+}
