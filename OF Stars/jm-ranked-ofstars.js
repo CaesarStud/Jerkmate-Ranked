@@ -106,7 +106,7 @@ function displayRandomImage() {
     
     const randomIndex = Math.floor(Math.random() * remainingImages.length); // Pick a random index
     const randomImageFile = remainingImages[randomIndex]; // Get the random image filename
-    randomImage.src = `pics/${randomImageFile}`; // Set the image source
+    randomImage.src = `Pics/${randomImageFile}`; // Set the image source
     randomImage.style.display = 'block'; // Show the image
     currentImageName = randomImageFile.split('.')[0]; // Store the image name without extension
     guessInput.style.display = 'block'; // Show the input field
