@@ -191,7 +191,7 @@ button:hover {
         height: auto; /* Allow navbar to expand based on content */
     }
     .navbar {
-        flex-direction: column; /* Stack navbar items vertically */
+        flex-direction: row; /* Stack navbar items vertically */
         padding: 10px; /* Reduced padding for smaller screens */
     }
     .logo a {
@@ -200,6 +200,7 @@ button:hover {
     ul {
         flex-direction: column; /* Stacks links vertically */
         align-items: flex-start; /* Align links to the left */
+        justify-content: space-evenly; /* Space links evenly */
     }
     ul li {
         margin: 5px 0; /* Adjusted margin for stacked links */
