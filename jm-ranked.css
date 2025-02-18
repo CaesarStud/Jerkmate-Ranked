@@ -198,7 +198,7 @@ button:hover {
         font-size: 24px; /* Further reduced font size for mobile */
     }
     ul {
-        flex-direction: column; /* Stacks links vertically */
+        flex-direction: row; /* Stacks links vertically */
         align-items: flex-start; /* Align links to the left */
         justify-content: space-evenly; /* Space links evenly */
     }
