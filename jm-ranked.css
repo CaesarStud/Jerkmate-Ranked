@@ -23,6 +23,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between; /* Push logo to left and nav links to right */
+    flex-wrap: wrap; /* Added to allow wrapping of navigation items */
 }
 .logo a {
     color: rgb(53, 50, 137); /* Light blue for logo */
@@ -35,6 +36,7 @@ ul {
     align-items: center;
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
+    flex-wrap: wrap; /* Added to allow wrapping of navigation items */
 }
 ul li {
     margin-right: 25px;
@@ -88,8 +90,9 @@ button:hover {
     color: rgb(255, 255, 255); /* White text */
     background-color: rgb(53, 50, 137); /* Dark blue for button */
     height: 150px;
-    width: 500px;
-    font-size: 100px;
+    width: 90%; /* Made button width responsive */
+    max-width: 500px; /* Set a max width for larger screens */
+    font-size: 10vw; /* Responsive font size */
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -110,8 +113,9 @@ button:hover {
 .categories {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center; /* Center category buttons on smaller screens */
     margin: 20px 0;
+    flex-wrap: wrap; /* Added to allow wrapping of category buttons */
 }
 .category {
     color: rgb(255, 255, 255); /* White text */
@@ -126,6 +130,7 @@ button:hover {
     font-weight: bold;
     position: relative;
     overflow: hidden;
+    margin: 10px; /* Added margin for better spacing on smaller screens */
 }
 .category::before {
     content: '';
