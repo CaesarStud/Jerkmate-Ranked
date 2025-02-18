@@ -93,7 +93,7 @@ button:hover {
     height: 150px;
     width: 90%; /* Made button width responsive */
     max-width: 500px; /* Set a max width for larger screens */
-    font-size: 10vw; /* Responsive font size */
+    font-size: clamp(24px, 10vw, 100px); /* Responsive font size */
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -198,7 +198,7 @@ button:hover {
         font-size: 24px; /* Further reduced font size for mobile */
     }
     ul {
-        /*flex-direction: column;*/ /* Stacks links vertically */
+        flex-direction: column; /* Stacks links vertically */
         align-items: flex-start; /* Align links to the left */
     }
     ul li {
