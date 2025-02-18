@@ -367,7 +367,7 @@ button:hover {
         -1px 1px 0 black,
         -1px 1px 0 black,
         1px 1px 0 black; /* Add a black outline */
-    white-space: nowrap; overflow: hidden; /* Prevent text from wrapping */
+    /* white-space: nowrap; overflow: hidden; */ /* Prevent text from wrapping */
 }
 @keyframes expand {
     0% {
