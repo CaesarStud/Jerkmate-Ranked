@@ -179,7 +179,49 @@ button:hover {
 #redheadButton::before {
     background-image: url(Redhead\ Button\ Cover.jpg);
 }
+/* Media Queries for Mobile Compatibility */
+@media (max-width: 768px) {
+    .logo a {
+        font-size: 28px;
+    }
+    ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    ul li {
+        margin: 10px 0;
+    }
+    .general-button {
+        height: 100px;
+        font-size: 8vw;
+    }
+    .categories-title {
+        font-size: 30px;
+    }
+    .category {
+        height: 120px;
+        width: 120px;
+        font-size: 18px;
+    }
+}
 
+@media (max-width: 480px) {
+    .logo a {
+        font-size: 24px;
+    }
+    .general-button {
+        height: 80px;
+        font-size: 6vw;
+    }
+    .categories-title {
+        font-size: 24px;
+    }
+    .category {
+        height: 100px;
+        width: 100px;
+        font-size: 16px;
+    }
+}
 
 #start{
     position: absolute; /* Center within #play-screen */
