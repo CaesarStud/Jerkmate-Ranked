@@ -36,7 +36,7 @@ const imageFiles = [
     "Blake Blossom.jpg",
     "Blair Williams.jpg",
     "Brandi Love.jpg",
-    "Elsa jean.jpg",
+    "Elsa Jean.jpg",
     "Gabbie Carter.jpg",
     "Haley Reed.jpg",
     "Jessa Rhodes.jpg",
