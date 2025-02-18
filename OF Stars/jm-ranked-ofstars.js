@@ -84,6 +84,7 @@ function handleGiveUp(){
         giveUp.style.display = 'none'; // Hide the Give Up button
         clearInterval(timerInterval); // Stop the timer
         playAgain.style.display = 'block';
+        triggerConfetti();
     } else {
         // Move to the next image after 1 second
         setTimeout(() => {
@@ -117,6 +118,15 @@ function displayRandomImage() {
     remainingImages.splice(randomIndex, 1);
 }
 
+// Function to trigger confetti
+function triggerConfetti(){
+    confetti({
+        particleCount: 100, // Number of confetti particles
+        spread: 70, // How far the particles spread
+        origin: { y: 0.6} // Start confetti from the bottom of the screen
+    });
+}
+
 // Function to check if the guess is correct
 function checkGuess() {
     const userGuess = guessInput.value.trim().toLowerCase(); // Get the user's guess
@@ -138,6 +148,7 @@ function checkGuess() {
             giveUp.style.display = 'none'; // Hide the Give Up button
             clearInterval(timerInterval); // Stop the timer
             playAgain.style.display = 'block';
+            triggerConfetti();
         }
     } else {
         feedback.textContent = "Incorrect! 😢";
