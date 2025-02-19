@@ -40,7 +40,7 @@ const imageFiles = [
     "Eliza Ibarra.jpg",
     "Emily Willis.jpg",
     "Gianna Dior.jpg",
-    "Gina valentina.jpg",
+    "Gina Valentina.jpg",
     "Ginebra Bellucci.jpg",
     "Harmony Wonder.jpg",
     "Hime Marie.jpg",
