@@ -242,6 +242,12 @@ button:hover {
     }
 }
 
+#products{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
 #start{
     position: absolute; /* Center within #play-screen */
     top: 50%; /* Center vertically */
