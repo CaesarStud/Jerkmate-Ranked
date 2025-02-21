@@ -223,6 +223,16 @@
                     font-size: 0.8rem; /* Further reduce font size for buttons */
                 }
             }
+            .messageDiv {
+                background-color: hsl(327,90%,28%);
+                color: white;
+                padding: 10px 20px;
+                margin: 10px;
+                border-radius: 5px;
+                font-size: 1rem;
+                opacity: 0;
+                animation: fadeOut 7s forwards;
+            }
         </style>
 
     </head>
@@ -248,12 +258,12 @@
                 </div>
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" name="email" id="email" placeholder="Email" required>
+                    <input type="email" name="email" id="rEmail" placeholder="Email" required>
                     <label for="email">Email</label>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" id="password" placeholder="password" required>
+                    <input type="password" id="rPassword" placeholder="password" required>
                     <label for="password">Password</label>
                 </div>
                 <input type="submit" class="btn" value="Sign Up" name="signUp" id="sU">
