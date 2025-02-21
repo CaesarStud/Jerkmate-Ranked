@@ -153,6 +153,76 @@
             #sU {
                 margin-top: 10px;
             }
+            /* Mobile Compatibility */
+            @media (max-width: 768px) {
+                .log-container {
+                    width: 90%; /* Make the form container take up most of the screen */
+                    margin: 20px auto; /* Reduce top and bottom margin */
+                    padding: 1rem; /* Reduce padding */
+                }
+                .form-title {
+                    font-size: 1.2rem; /* Reduce font size for the title */
+                    padding: 1rem 0; /* Adjust padding */
+                }
+                .input-group {
+                    padding-top: 8px; /* Reduce padding */
+                }
+                input {
+                    font-size: 14px; /* Reduce font size for inputs */
+                }
+                label {
+                    font-size: 14px; /* Reduce font size for labels */
+                }
+                .btn {
+                    font-size: 1rem; /* Reduce font size for buttons */
+                    padding: 6px 0; /* Adjust padding */
+                }
+                .or {
+                    font-size: 1rem; /* Reduce font size for the "or" text */
+                }
+                .icons i {
+                    padding: 0.6rem 1rem; /* Reduce padding for icons */
+                    font-size: 1.2rem; /* Reduce icon size */
+                }
+                .links {
+                    flex-direction: column; /* Stack links vertically */
+                    align-items: center; /* Center-align links */
+                    padding: 0 1rem; /* Reduce padding */
+                }
+                .links p {
+                    margin-bottom: 0.5rem; /* Add spacing between text and button */
+                }
+                .links button {
+                    font-size: 0.9rem; /* Reduce font size for buttons */
+                }
+            }
+            @media (max-width: 480px) {
+                .log-container {
+                    width: 95%; /* Make the form container even wider on very small screens */
+                }
+                .form-title {
+                    font-size: 1.1rem; /* Further reduce font size for the title */
+                }
+                input {
+                    font-size: 13px; /* Further reduce font size for inputs */
+                }
+                label {
+                    font-size: 13px; /* Further reduce font size for labels */
+                }
+                .btn {
+                    font-size: 0.9rem; /* Further reduce font size for buttons */
+                }
+                .or {
+                    font-size: 0.9rem; /* Further reduce font size for the "or" text */
+                }
+                .icons i {
+                    padding: 0.5rem 0.8rem; /* Further reduce padding for icons */
+                    font-size: 1rem; /* Further reduce icon size */
+                }
+                .links button {
+                    font-size: 0.8rem; /* Further reduce font size for buttons */
+                }
+            }
         </style>
 
     </head>
