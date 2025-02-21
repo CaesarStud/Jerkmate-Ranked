@@ -152,6 +152,18 @@ button:hover {
 .category:hover::before {
     opacity: 1;
 }
+.image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* Start with the image hidden */
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
 .category span {
     position: relative;
     z-index: 2; /* Ensure the text is above the image */
