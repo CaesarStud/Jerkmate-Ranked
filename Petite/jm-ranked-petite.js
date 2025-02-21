@@ -105,7 +105,7 @@ function handleGiveUp(){
 
     if (correctGuesses == 10){
         feedback.innerHTML = "Congratulations! You lasted 10 rounds in <span class='timer-text'>" + timerElement.textContent + "</span>";
-        feedback.style.color = "rgb(251, 124, 169)"; feedback.style.whiteSpace = "normal"; feedback.style.textAlign = "center"; // Text Style 
+        feedback.style.color = "rgb(160, 241, 255)"; feedback.style.whiteSpace = "normal"; feedback.style.textAlign = "center"; // Text Style 
         guessInput.style.display = 'none'; // Hide the input field
         giveUp.style.display = 'none'; // Hide the Give Up button
         clearInterval(timerInterval); // Stop the timer
@@ -169,7 +169,7 @@ function checkGuess() {
             }, 1000); // 1000 milliseconds = 1 second
         } else {
             feedback.innerHTML = "Congratulations! You lasted 10 rounds in <span class='timer-text'>" + timerElement.textContent + "</span>";
-            feedback.style.color = "rgb(251, 124, 169)"; feedback.style.whiteSpace = "normal"; feedback.style.textAlign = "center"; // Text Style 
+            feedback.style.color = "rgb(160, 241, 255)"; feedback.style.whiteSpace = "normal"; feedback.style.textAlign = "center"; // Text Style 
             guessInput.style.display = 'none'; // Hide the input field
             giveUp.style.display = 'none'; // Hide the Give Up button
             clearInterval(timerInterval); // Stop the timer
