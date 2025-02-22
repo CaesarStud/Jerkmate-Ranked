@@ -140,6 +140,9 @@ function handleGiveUp(){
         clearInterval(timerInterval); // Stop the timer
         playAgain.style.display = 'block';
         triggerConfetti();
+
+        // Save the final timer value to Firestore
+        saveTimerToFirestore(timerElement.textContent);
     } else {
         // Move to the next image after 1 second
         setTimeout(() => {
@@ -204,6 +207,9 @@ function checkGuess() {
             clearInterval(timerInterval); // Stop the timer
             playAgain.style.display = 'block';
             triggerConfetti();
+
+            // Save the final timer value to Firestore
+            saveTimerToFirestore(timerElement.textContent);
         }
     } else {
         feedback.textContent = "Incorrect! 😢";
