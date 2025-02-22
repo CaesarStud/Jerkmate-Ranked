@@ -11,23 +11,6 @@ let giveUp = document.getElementById('giveUp');
 // Function to reset the game
 function resetGame() {
     window.location.reload();
-    /*
-    // Reset variables
-    remainingImages = [...imageFiles]; // Reset the list of remaining images
-    correctGuesses = 0; // Reset the number of correct guesses
-    startTime = null; // Reset the start time
-    clearInterval(timerInterval); // Stop the timer
-    timerInterval = null;
-
-    // Reset UI
-    timerElement.textContent = "00:00.00"; // Reset the timer display
-    feedback.style.display = 'none'; // Hide feedback
-    randomImage.style.display = 'none'; // Hide the image
-    guessInput.style.display = 'none'; // Hide the input field
-    playAgain.style.display = 'none'; // Hide the Play Again button
-    startButton.style.display = 'block'; // Show the Start button
-    startButton.disabled = false; // Enable the Start button
-    */
 }
 
 // List of image filenames in the "general" folder
