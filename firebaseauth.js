@@ -100,6 +100,7 @@ signIn.addEventListener('click', (event)=>{
             const user = userCredential.user; // Get the user data from userCredential
             showMessage('Login Is Successful', 'signInMessage'); // Display message
             localStorage.setItem('loggedInUserId', user.uid); // Locally store the user data
+          console.log('Login Successful');
             window.location.href = "index.html" // Redirect user to homepage
         })
         .catch((error) => {
