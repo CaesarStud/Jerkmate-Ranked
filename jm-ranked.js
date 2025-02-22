@@ -30,7 +30,6 @@ function showRandomCategory(){
     const imageContainer = button.querySelector('.image-container');
     imageContainer.style.backgroundImage = selectedCategory.image;
     imageContainer.style.opacity = '1';
-    console.log(selectedCategory.image);
 }
 
 // Show a random category every second (1000 milliseconds)
