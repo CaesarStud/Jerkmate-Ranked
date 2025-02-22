@@ -55,7 +55,7 @@ logoutButton.addEventListener('click', ()=>{
     localStorage.removeItem('loggedInUserId');
     signOut(auth)
         .then(() => {
-            window.location.href = 'jm-ranked.html';
+            window.location.href = 'index.html';
         })
         .catch((error) => {
             console.error('Error Signing Out: ', error);
