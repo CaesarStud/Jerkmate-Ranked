@@ -1,3 +1,23 @@
+// Import Firebase SDK Functions
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+import {getAuth, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js"
+import {getFirestore, setDoc, getDoc, doc} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyCvJVsteic2Rpj5V09LG41P4D9lFKfF5TA", // API Key for Firebase
+    authDomain: "jmate-ranked.firebaseapp.com", // Domain for Firebase Authentication
+    projectId: "jmate-ranked", // Project ID in Firebase
+    storageBucket: "jmate-ranked.appspot.com", // Storage bucket for Firebase Storage
+    messagingSenderId: "323494062844", // Sender ID for Firebase Cloud Messaging
+    appId: "1:323494062844:web:3003f28f13abc97374c579" // App ID for Firebase
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig); // Initializes the Firebase app with the provided configuration
+const auth = getAuth();
+const db = getFirestore();
+
 let startTime;
 let timerInterval;
 let timerElement = document.getElementById('timer');
