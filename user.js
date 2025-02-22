@@ -35,7 +35,6 @@ onAuthStateChanged(auth, (user) => {
                     userButtonUName.innerText = userData.userName;
                     userButton.style.display = 'block'; // Make the user button visible
                     loginButton.style.display = 'none'; // Make the login button disappear
-                    // userButton.innerText = userData.username;
                 }
                 else {
                     console.log("No Document Found Matching ID")
