@@ -1,3 +1,23 @@
+// Import Firebase SDK Functions
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+import {getAuth, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js"
+import {getFirestore, setDoc, getDoc, doc} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js"
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyCvJVsteic2Rpj5V09LG41P4D9lFKfF5TA", // API Key for Firebase
+    authDomain: "jmate-ranked.firebaseapp.com", // Domain for Firebase Authentication
+    projectId: "jmate-ranked", // Project ID in Firebase
+    storageBucket: "jmate-ranked.appspot.com", // Storage bucket for Firebase Storage
+    messagingSenderId: "323494062844", // Sender ID for Firebase Cloud Messaging
+    appId: "1:323494062844:web:3003f28f13abc97374c579" // App ID for Firebase
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig); // Initializes the Firebase app with the provided configuration
+const auth = getAuth();
+const db = getFirestore();
+
 let startTime;
 let timerInterval;
 let timerElement = document.getElementById('timer');
@@ -8,26 +28,61 @@ let guessInput = document.getElementById('guessInput');
 let feedback = document.getElementById('feedback');
 let giveUp = document.getElementById('giveUp');
 
+// Function to save the timer value to Firestore
+async function saveTimerToFirestore(timerValue) {
+    const loggedInUserId = localStorage.getItem('loggedInUserId');
+    if (loggedInUserId) {
+        const userDocRef = doc(db, "users", loggedInUserId);
+
+        try {
+            // Fetch the existing document
+            const docSnap = await getDoc(userDocRef);
+
+            if (docSnap.exists()) {
+                const userData = docSnap.data();
+                const existingBestTime = userData.bestLatinaTime;
+
+                // Check if there's no existing bestComboTime or the new time is better
+                if (!existingBestTime || isTimeBetter(timerValue, existingBestTime)) {
+                    // Update the user's document with the new bestComboTime
+                    setDoc(userDocRef, { bestLatinaTime: timerValue }, { merge: true });
+                    console.log("New best time saved to Firestore:", timerValue);
+                } else {
+                    console.log("Existing best time is better. No update needed.");
+                }
+            } else {
+                console.log("User document does not exist.");
+            }
+        } catch (error) {
+            console.error("Error saving timer value to Firestore:", error);
+        }
+    } else {
+        console.log("User ID not found in local storage");
+    }
+}
+
+function isTimeBetter(newTime, existingTime) {
+    // Convert time strings to total centiseconds for comparison
+    const newTimeInCentiseconds = convertTimeToCentiseconds(newTime);
+    const existingTimeInCentiseconds = convertTimeToCentiseconds(existingTime);
+
+    // Return true if the new time is better (less than existing time)
+    return newTimeInCentiseconds < existingTimeInCentiseconds;
+}
+
+function convertTimeToCentiseconds(time) {
+    const [minutes, secondsCentiseconds] = time.split(':');
+    const [seconds, centiseconds] = secondsCentiseconds.split('.');
+    return (
+        parseInt(minutes) * 6000 + // Convert minutes to centiseconds
+        parseInt(seconds) * 100 +  // Convert seconds to centiseconds
+        parseInt(centiseconds)     // Add centiseconds
+    );
+}
+
 // Function to reset the game
 function resetGame() {
     window.location.reload();
-    /*
-    // Reset variables
-    remainingImages = [...imageFiles]; // Reset the list of remaining images
-    correctGuesses = 0; // Reset the number of correct guesses
-    startTime = null; // Reset the start time
-    clearInterval(timerInterval); // Stop the timer
-    timerInterval = null;
-
-    // Reset UI
-    timerElement.textContent = "00:00.00"; // Reset the timer display
-    feedback.style.display = 'none'; // Hide feedback
-    randomImage.style.display = 'none'; // Hide the image
-    guessInput.style.display = 'none'; // Hide the input field
-    playAgain.style.display = 'none'; // Hide the Play Again button
-    startButton.style.display = 'block'; // Show the Start button
-    startButton.disabled = false; // Enable the Start button
-    */
 }
 
 // List of image filenames in the "general" folder
@@ -93,6 +148,9 @@ function handleGiveUp(){
         clearInterval(timerInterval); // Stop the timer
         playAgain.style.display = 'block';
         triggerConfetti();
+
+        // Save the final timer value to Firestore
+        saveTimerToFirestore(timerElement.textContent);
     } else {
         // Move to the next image after 1 second
         setTimeout(() => {
@@ -157,6 +215,9 @@ function checkGuess() {
             clearInterval(timerInterval); // Stop the timer
             playAgain.style.display = 'block';
             triggerConfetti();
+
+            // Save the final timer value to Firestore
+            saveTimerToFirestore(timerElement.textContent);
         }
     } else {
         feedback.textContent = "Incorrect! 😢";
