@@ -40,7 +40,7 @@ async function saveTimerToFirestore(timerValue) {
 
             if (docSnap.exists()) {
                 const userData = docSnap.data();
-                const existingBestTime = userData.bestComboTime;
+                const existingBestTime = userData.bestAsianTime;
 
                 // Check if there's no existing bestComboTime or the new time is better
                 if (!existingBestTime || isTimeBetter(timerValue, existingBestTime)) {
