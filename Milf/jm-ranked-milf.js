@@ -8,26 +8,61 @@ let guessInput = document.getElementById('guessInput');
 let feedback = document.getElementById('feedback');
 let giveUp = document.getElementById('giveUp');
 
+// Function to save the timer value to Firestore
+async function saveTimerToFirestore(timerValue) {
+    const loggedInUserId = localStorage.getItem('loggedInUserId');
+    if (loggedInUserId) {
+        const userDocRef = doc(db, "users", loggedInUserId);
+
+        try {
+            // Fetch the existing document
+            const docSnap = await getDoc(userDocRef);
+
+            if (docSnap.exists()) {
+                const userData = docSnap.data();
+                const existingBestTime = userData.bestMilfTime;
+
+                // Check if there's no existing bestComboTime or the new time is better
+                if (!existingBestTime || isTimeBetter(timerValue, existingBestTime)) {
+                    // Update the user's document with the new bestComboTime
+                    setDoc(userDocRef, { bestMilfTime: timerValue }, { merge: true });
+                    console.log("New best time saved to Firestore:", timerValue);
+                } else {
+                    console.log("Existing best time is better. No update needed.");
+                }
+            } else {
+                console.log("User document does not exist.");
+            }
+        } catch (error) {
+            console.error("Error saving timer value to Firestore:", error);
+        }
+    } else {
+        console.log("User ID not found in local storage");
+    }
+}
+
+function isTimeBetter(newTime, existingTime) {
+    // Convert time strings to total centiseconds for comparison
+    const newTimeInCentiseconds = convertTimeToCentiseconds(newTime);
+    const existingTimeInCentiseconds = convertTimeToCentiseconds(existingTime);
+
+    // Return true if the new time is better (less than existing time)
+    return newTimeInCentiseconds < existingTimeInCentiseconds;
+}
+
+function convertTimeToCentiseconds(time) {
+    const [minutes, secondsCentiseconds] = time.split(':');
+    const [seconds, centiseconds] = secondsCentiseconds.split('.');
+    return (
+        parseInt(minutes) * 6000 + // Convert minutes to centiseconds
+        parseInt(seconds) * 100 +  // Convert seconds to centiseconds
+        parseInt(centiseconds)     // Add centiseconds
+    );
+}
+
 // Function to reset the game
 function resetGame() {
     window.location.reload();
-    /*
-    // Reset variables
-    remainingImages = [...imageFiles]; // Reset the list of remaining images
-    correctGuesses = 0; // Reset the number of correct guesses
-    startTime = null; // Reset the start time
-    clearInterval(timerInterval); // Stop the timer
-    timerInterval = null;
-
-    // Reset UI
-    timerElement.textContent = "00:00.00"; // Reset the timer display
-    feedback.style.display = 'none'; // Hide feedback
-    randomImage.style.display = 'none'; // Hide the image
-    guessInput.style.display = 'none'; // Hide the input field
-    playAgain.style.display = 'none'; // Hide the Play Again button
-    startButton.style.display = 'block'; // Show the Start button
-    startButton.disabled = false; // Enable the Start button
-    */
 }
 
 // List of image filenames in the "general" folder
@@ -90,6 +125,9 @@ function handleGiveUp(){
         clearInterval(timerInterval); // Stop the timer
         playAgain.style.display = 'block';
         triggerConfetti();
+
+        // Save the final timer value to Firestore
+        saveTimerToFirestore(timerElement.textContent);
     } else {
         // Move to the next image after 1 second
         setTimeout(() => {
@@ -154,6 +192,9 @@ function checkGuess() {
             clearInterval(timerInterval); // Stop the timer
             playAgain.style.display = 'block';
             triggerConfetti();
+
+            // Save the final timer value to Firestore
+            saveTimerToFirestore(timerElement.textContent);
         }
     } else {
         feedback.textContent = "Incorrect! 😢";
