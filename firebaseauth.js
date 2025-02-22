@@ -63,7 +63,7 @@ signUp.addEventListener('click', (event)=>{
             const docRef = doc(db, "users", user.uid);
             setDoc(docRef, userData) // Set the user data in Firestore
                 .then(()=>{
-                    window.location.href = "jm-ranked-login.html"; // Redirect to the login page
+                    window.location.href = "index.html"; // Redirect to the login page
                 })
                 .catch((error)=>{
                     console.error("error writing document", error); // Log any errors that occur while writing to Firestore
