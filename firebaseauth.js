@@ -63,7 +63,7 @@ signUp.addEventListener('click', (event)=>{
             const docRef = doc(db, "users", user.uid);
             setDoc(docRef, userData) // Set the user data in Firestore
                 .then(()=>{
-                    window.location.href = "index.html"; // Redirect to the login page
+                    window.location.href = "jm-ranked-login.html"; // Redirect to the login page
                 })
                 .catch((error)=>{
                     console.error("error writing document", error); // Log any errors that occur while writing to Firestore
@@ -100,7 +100,7 @@ signIn.addEventListener('click', (event)=>{
             const user = userCredential.user; // Get the user data from userCredential
             showMessage('Login Is Successful', 'signInMessage'); // Display message
             localStorage.setItem('loggedInUserId', user.uid); // Locally store the user data
-            window.location.href = "jm-ranked.html" // Redirect user to homepage
+            window.location.href = "index.html" // Redirect user to homepage
         })
         .catch((error) => {
             console.error("Login error: ", error); // Log the full error object
