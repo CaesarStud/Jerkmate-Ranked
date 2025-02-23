@@ -22,59 +22,94 @@ const db = getFirestore();
 const userButton = document.querySelector('.userButton'); // Select the user button
 const loginButton = document.querySelector('.loginButton'); // Select the login button
 const userButtonUName = document.querySelector('#userButtonUName'); // Select just the text within the user button
+const logoutButton = document.getElementById('logout');
 
 // Get references to the time text
-const asianTime = document.querySelector('#asian');
-const blondeTime = document.querySelector('#blonde');
-const brunetteTime = document.querySelector('#brunette');
-const comboTime = document.querySelector('#combo');
-const ebonyTime = document.querySelector('#ebony');
-const latinaTime = document.querySelector('#latina');
-const milfTime = document.querySelector('#milf');
-const ofTime = document.querySelector('#onlyfans');
-const petiteTime = document.querySelector('#petite');
-const redheadTime = document.querySelector('#redhead');
+const timeElements = [
+    document.querySelector('#time1'),
+    document.querySelector('#time2'),
+    document.querySelector('#time3'),
+    document.querySelector('#time4'),
+    document.querySelector('#time5'),
+    document.querySelector('#time6'),
+    document.querySelector('#time7'),
+    document.querySelector('#time8'),
+    document.querySelector('#time9'),
+    document.querySelector('#time10')
+];
 
-onAuthStateChanged(auth, (user) => {
+// Function to convert time string to total milliseconds
+const timeStringToMilliseconds = (timeString) => {
+    if (!timeString) return Infinity; // Handle missing or invalid times
+    const [minutes, seconds] = timeString.split(':');
+    const [sec, ms] = seconds.split('.');
+    return (
+        parseInt(minutes) * 60 * 1000 + // Convert minutes to milliseconds
+        parseInt(sec) * 1000 + // Convert seconds to milliseconds
+        parseInt(ms || 0) // Convert milliseconds (if present)
+    );
+};
+
+// Function to extract and sort times from userData
+const extractAndSortTimes = (userData) => {
+    const times = [
+        { category: "Asian Time", time: userData.bestAsianTime },
+        { category: "Blonde Time", time: userData.bestBlondeTime },
+        { category: "Brunette Time", time: userData.bestBrunetteTime },
+        { category: "Combo Time", time: userData.bestComboTime },
+        { category: "Ebony Time", time: userData.bestEbonyTime },
+        { category: "Latina Time", time: userData.bestLatinaTime },
+        { category: "Milf Time", time: userData.bestMilfTime },
+        { category: "OF Time", time: userData.bestOFStarTime },
+        { category: "Petite Time", time: userData.bestPetiteTime },
+        { category: "Redhead Time", time: userData.bestRedheadTime }
+    ];
+
+    // Sort the array by time (lowest to highest)
+    times.sort((a, b) => timeStringToMilliseconds(a.time) - timeStringToMilliseconds(b.time));
+
+    return times;
+};
+
+// Function to update the UI with sorted times
+const updateUIWithTimes = (times) => {
+    times.forEach((timeObj, index) => {
+        timeElements[index].innerText = `${timeObj.category}: ${timeObj.time}`;
+    });
+};
+
+// Function to handle user authentication state changes
+const handleAuthStateChange = (user) => {
     const loggedInUserId = localStorage.getItem('loggedInUserId');
     if (loggedInUserId) {
         const docRef = doc(db, "users", loggedInUserId);
         getDoc(docRef)
-            .then((docSnap)=>{
-                if (docSnap.exists()){
+            .then((docSnap) => {
+                if (docSnap.exists()) {
                     const userData = docSnap.data();
-                    
-                    userButtonUName.innerText = userData.userName;
-                    userButton.style.display = 'block'; // Make the user button visible
-                    loginButton.style.display = 'none'; // Make the login button disappear
 
-                    asianTime.innerText = "Asian Time: " + userData.bestAsianTime;
-                    blondeTime.innerText = "Blonde Time: " + userData.bestBlondeTime;
-                    brunetteTime.innerText = "Brunette Time: " + userData.bestBrunetteTime;
-                    comboTime.innerText = "Combo Time: " + userData.bestComboTime;
-                    ebonyTime.innerText = "Ebony Time: " + userData.bestEbonyTime;
-                    latinaTime.innerText = "Latina Time: " + userData.bestLatinaTime;
-                    milfTime.innerText = "Milf Time: " + userData.bestMilfTime;
-                    ofTime.innerText = "OF Time: " + userData.bestOFStarTime;
-                    petiteTime.innerText = "Petite Time: " + userData.bestPetiteTime;
-                    redheadTime.innerText = "Redhead Time: " + userData.bestRedheadTime;
-                }
-                else {
-                    console.log("No Document Found Matching ID")
+                    // Update user button and hide login button
+                    userButtonUName.innerText = userData.userName;
+                    userButton.style.display = 'block';
+                    loginButton.style.display = 'none';
+
+                    // Extract, sort, and update times
+                    const sortedTimes = extractAndSortTimes(userData);
+                    updateUIWithTimes(sortedTimes);
+                } else {
+                    console.log("No Document Found Matching ID");
                 }
             })
             .catch((error) => {
                 console.log("Error Getting Document", error);
-            })
-    }
-    else {
+            });
+    } else {
         console.log("User ID Not Found in Local Storage");
     }
-});
+};
 
-const logoutButton = document.getElementById('logout');
-
-logoutButton.addEventListener('click', ()=>{
+// Function to handle logout
+const handleLogout = () => {
     localStorage.removeItem('loggedInUserId');
     signOut(auth)
         .then(() => {
@@ -83,4 +118,8 @@ logoutButton.addEventListener('click', ()=>{
         .catch((error) => {
             console.error('Error Signing Out: ', error);
         });
-});
+};
+
+// Event listeners
+onAuthStateChanged(auth, handleAuthStateChange);
+logoutButton.addEventListener('click', handleLogout);
