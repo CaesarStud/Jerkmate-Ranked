@@ -75,7 +75,7 @@ async function saveTimerToFirestore(timerValue) {
                 // Check if there's no existing bestPetiteTime or the new time is better
                 if (!existingBestTime || isTimeBetter(timerValue, existingBestTime)) {
                     // Update the user's document with the new bestComboTime
-                    setDoc(userDocRef, { bestComboTime: timerValue }, { merge: true });
+                    setDoc(userDocRef, { bestPetiteTime: timerValue }, { merge: true });
                     console.log("New best time saved to Firestore:", timerValue);
                 } else {
                     console.log("Existing best time is better. No update needed.");
