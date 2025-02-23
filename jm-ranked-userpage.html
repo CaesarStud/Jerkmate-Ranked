@@ -14,20 +14,36 @@
                 text-decoration: underline;
             }
             .allContainer {
-                display: flex; justify-content: center;
-                /*flex-direction: column;  Stack children vertically */
-                align-items: center; /* Center children horizontally */
-                gap: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px; /* Space between elements */
+                flex-wrap: wrap; /* Allow wrapping of child elements */
             }
             .time {
-                display: inline-flex; /* Used to fit the content */
-                font-size: 1.5rem; color: whitesmoke;  
-                font-weight: bold; background: linear-gradient(135deg, #007bff, #00bfff); /* Gradient background */
+                display: inline-flex;
+                font-size: 1.5rem;
+                color: whitesmoke;
+                font-weight: bold;
+                background: linear-gradient(135deg, #007bff, #00bfff);
                 padding: 20px 40px;
-                border-radius: 15px; /* Rounded corners */
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+                border-radius: 15px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                 margin-bottom: 20px;
-                animation: glow 2s infinite alternate; /* Glow effect */
+                animation: glow 2s infinite alternate;
+                flex: 1 1 calc(50% - 20px); /* Allow 2 items per row on desktop */
+                box-sizing: border-box; /* Ensure padding is included in width calculation */
+            }
+            /* Mobile view: Stack elements vertically (1 per row) */
+            @media (max-width: 768px) {
+                .allContainer {
+                    flex-direction: column; /* Stack children vertically */
+                    gap: 10px; /* Smaller gap for mobile */
+                }
+            
+                .time {
+                    flex: 1 1 100%; /* Full width for mobile (1 per row) */
+                }
             }
         </style>
     </head>
