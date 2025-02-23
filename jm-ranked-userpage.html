@@ -6,12 +6,35 @@
         <title>Jerkmate Ranked</title>
         <link rel="stylesheet" href="jm-ranked.css">
         <link rel="shortcut icon" type="image/jpg" href="logo.jpg" />
-        <script type="module" src="user.js"></script>
+        
+        <style>
+            #title {
+                display: flex;
+                justify-content: center;
+                text-decoration: underline;
+            }
+            .allContainer {
+                display: flex; justify-content: center;
+                /*flex-direction: column;  Stack children vertically */
+                align-items: center; /* Center children horizontally */
+                gap: 20px;
+            }
+            .time {
+                display: inline-flex; /* Used to fit the content */
+                font-size: 1.5rem; color: whitesmoke;  
+                font-weight: bold; background: linear-gradient(135deg, #007bff, #00bfff); /* Gradient background */
+                padding: 20px 40px;
+                border-radius: 15px; /* Rounded corners */
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+                margin-bottom: 20px;
+                animation: glow 2s infinite alternate; /* Glow effect */
+            }
+        </style>
     </head>
     <body>
         <header>
             <nav class="navbar">
-                <div class="logo"><a href="index.html">Jerkmate Ranked</a></div>
+                <div class="logo"><a href="jm-ranked.html">Jerkmate Ranked</a></div>
                 <ul>
                     <li><a href="jm-ranked-rank.html">Rank</a></li>
                     <li><a href="jm-ranked-shop.html">Shop</a></li>
@@ -21,8 +44,34 @@
             </nav>
         </header>
 
-        <h1>User Page</h1>
+        <h1 id="title">Your Best Times</h1>
+    </br>
+        <div id="comboContainer" class="allContainer">
+            <div class="time" id="combo">Combo Time: </div>
+        </div>
+    </br>
+        <div id="line1Container" class="allContainer">
+            <div class="time" id="onlyfans">OF Time: </div>
+            <div class="time" id="milf">Milf Time: </div>
+        </div>
+        <div id="line2Container" class="allContainer">
+            <div class="time" id="petite">Petite Time: </div>
+            <div class="time" id="ebony">Ebony Time: </div>
+        </div>
+        <div id="line3Container" class="allContainer">
+            <div class="time" id="asian">Asian Time: </div>
+            <div class="time" id="latina">Latina Time: </div>            
+        </div>
+        <div id="line4Container" class="allContainer">
+            <div class="time" id="blonde">Blonde Time: </div>
+            <div class="time" id="brunette">Brunette Time: </div>
+        </div>
+        <div id="line5Container" class="allContainer">
+            <div class="time" id="redhead">Redhead Time: </div>
+        </div>
 
         <button id="logout">Log Out</button>
+
+        <script type="module" src="jm-ranked-userpage.js"></script>
     </body>
 </html>
