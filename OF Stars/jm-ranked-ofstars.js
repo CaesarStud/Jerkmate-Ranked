@@ -28,6 +28,36 @@ let guessInput = document.getElementById('guessInput');
 let feedback = document.getElementById('feedback');
 let giveUp = document.getElementById('giveUp');
 
+// Get references to the buttons
+const userButton = document.querySelector('.userButton'); // Select the user button
+const loginButton = document.querySelector('.loginButton'); // Select the login button
+const userButtonUName = document.querySelector('#userButtonUName'); // Select just the text within the user button
+
+onAuthStateChanged(auth, (user) => {
+    const loggedInUserId = localStorage.getItem('loggedInUserId');
+    if (loggedInUserId) {
+        const docRef = doc(db, "users", loggedInUserId);
+        getDoc(docRef)
+            .then((docSnap)=>{
+                if (docSnap.exists()){
+                    const userData = docSnap.data();
+                    userButtonUName.innerText = userData.userName;
+                    userButton.style.display = 'block'; // Make the user button visible
+                    loginButton.style.display = 'none'; // Make the login button disappear
+                }
+                else {
+                    console.log("No Document Found Matching ID")
+                }
+            })
+            .catch((error) => {
+                console.log("Error Getting Document", error);
+            })
+    }
+    else {
+        console.log("User ID Not Found in Local Storage");
+    }
+});
+
 // Function to save the timer value to Firestore
 async function saveTimerToFirestore(timerValue) {
     const loggedInUserId = localStorage.getItem('loggedInUserId');
