@@ -31,7 +31,7 @@
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                 margin-bottom: 20px;
                 animation: glow 2s infinite alternate;
-                flex: 1 1 calc(50% - 20px); /* Allow 2 items per row on desktop */
+                width: fit-content; /* Background only extends around the text */
                 box-sizing: border-box; /* Ensure padding is included in width calculation */
             }
             /* Mobile view: Stack elements vertically (1 per row) */
@@ -42,7 +42,7 @@
                 }
             
                 .time {
-                    flex: 1 1 100%; /* Full width for mobile (1 per row) */
+                    width: fit-content; /* Background only extends around the text */
                 }
             }
         </style>
