@@ -26,6 +26,7 @@
         <div id="products">
             <div id='product-component-1739924206941'></div>
         </div>
+        <div id='collection-component-1740433993394'></div>
         <script type="text/javascript">
         /*<![CDATA[*/
         (function () {
@@ -52,9 +53,9 @@
               storefrontAccessToken: '86d45b8c58be74e6017a7cdb3e8780a9',
             });
             ShopifyBuy.UI.onReady(client).then(function (ui) {
-              ui.createComponent('product', {
-                id: '7515105001541',
-                node: document.getElementById('product-component-1739924206941'),
+              ui.createComponent('collection', {
+                id: '286944165957',
+                node: document.getElementById('collection-component-1740433993394'),
                 moneyFormat: '%24%7B%7Bamount%7D%7D',
                 options: {
           "product": {
@@ -63,7 +64,20 @@
                 "@media (min-width: 601px)": {
                   "max-width": "calc(25% - 20px)",
                   "margin-left": "20px",
-                  "margin-bottom": "50px"
+                  "margin-bottom": "50px",
+                  "width": "calc(25% - 20px)"
+                },
+                "img": {
+                  "height": "calc(100% - 15px)",
+                  "position": "absolute",
+                  "left": "0",
+                  "right": "0",
+                  "top": "0"
+                },
+                "imgWrapper": {
+                  "padding-top": "calc(75% + 15px)",
+                  "position": "relative",
+                  "height": "0"
                 }
               },
               "button": {
